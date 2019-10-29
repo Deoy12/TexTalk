@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>TeXTalk Popup</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='stylesheet.css')}}">
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type=text/javascript>
+        $(function() {
+          $('a#test').bind('click', function() {
+            $.getJSON('/forward',
+                function(data) {
+            });
+            return false;
+          });
+        });
+    </script>
+</head>
+<body>
+
+	<div style="text-align: center;">
+			<form action="/forward/" method="post">
+					<button id="stupidbutton" name="forwardBtn" type="submit">To Calculate (Wait one second before speaking into the microphone)</button>
+
+			</form>
+	</div>
+
+</body>
+</html>
