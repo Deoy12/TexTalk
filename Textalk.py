@@ -15,13 +15,13 @@ with open('./data/substituted_words.csv', 'r') as file:
             words_substituted[row[0]] = row[1]
 
 def parsestr(s):
-    conv = convert(s)
-    return conv
+    return convert(s)
 
 def convert(s):
-    return convert_fractions(convert_to_proto(s))
+    return convert_to_proto(s)
+    '''convert_fractions(convert_to_proto(s))'''
 
-def convert_fractions(s):
+'''def convert_fractions(s):
     def get_subformula(index, direction):
         counter = 0
         while True:
@@ -39,7 +39,6 @@ def convert_fractions(s):
         start_index, end_index = get_subformula(index-1, -1), get_subformula(index+1, 1)
         # print(index, start_index, end_index)
         s = s[:start_index] + '\\frac{' + s[start_index:index] + '}{' + s[index+1:end_index] + '}' + s[end_index:]
-    print(s)
     while 'integral' in s:
         index = s.find('integral')
         end_index = get_subformula(index+len('integral'), 1)
@@ -53,7 +52,7 @@ def convert_fractions(s):
         end_index = get_subformula(index+len('log'), 1)
         s = s[:index] + '\\ln{' + s[index+len('log'):end_index] + '}' + s[end_index:]
     return s
-
+    '''
 
 def convert_to_proto(s):
     return quantity(parsestr_numeric(parsestr_substitute(s))).replace(' ', '')
